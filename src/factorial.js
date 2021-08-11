@@ -1,9 +1,36 @@
-'use strict';
-
 (() => {
+    'use strict';
+
+    let factNum;
+
+    const btn = document.createElement('button');
+    btn.disabled = true;
+    btn.style.margin = '10px';
+    btn.innerText = 'Calculate factorial';
+
     const br = document.createElement('div');
-    br.style['borderBottom'] = '1px solid';
+    br.style.borderBottom = '1px solid';
     br.style.margin = '10px 0';
+
+    const resultDiv = document.createElement('div');
+    const descriptionSpan = document.createElement('span');
+    const descriptionResultSpan = document.createElement('span');
+    resultDiv.style.whiteSpace = 'unset';
+    resultDiv.appendChild(descriptionSpan);
+    resultDiv.appendChild(descriptionResultSpan);
+
+    const conditionDiv = document.createElement('div');
+    conditionDiv.style.display = 'flex';
+
+    const factNumInput = document.createElement('input');
+    factNumInput.style.margin = '0 5px';
+
+    const conditionSpan = document.createElement('span');
+    conditionSpan.innerText = `Calculate factorial `;
+
+    conditionDiv.appendChild(factNumInput);
+    conditionDiv.appendChild(conditionSpan);
+
 
     const calculate = (num, result = 1) => {
         descriptionSpan.innerText += ` ${num} * ${num -1}!\n ${num - 1}! = `;
@@ -11,7 +38,7 @@
             descriptionSpan.innerText = `${descriptionSpan.innerText.substr(0, descriptionSpan.innerText.lastIndexOf('*'))}\n${factNum}! = `;
         }
         return num === 1 ? result : calculate(num - 1, result * num);
-    }
+    };
 
     const keyupHandler = (ev) => {
         factNum = parseInt(ev.target.value);
@@ -22,39 +49,12 @@
             btn.click();
         }
     };
+    factNumInput.addEventListener('keyup', keyupHandler);
 
     const btnClickHandler = () => {
         descriptionResultSpan.innerText = calculate(factNum).toString();
-    }
-
-    let factNum;
-
-    const conditionDiv = document.createElement('div');
-    conditionDiv.style.display = 'flex';
-
-    const conditionSpan = document.createElement('span');
-    conditionSpan.innerText = `Calculate factorial `;
-
-    const factNumInput = document.createElement('input');
-    factNumInput.style.margin = '0 5px';
-    factNumInput.addEventListener('keyup', keyupHandler);
-
-    conditionDiv.appendChild(conditionSpan);
-    conditionDiv.appendChild(factNumInput);
-
-    const btn = document.createElement('button');
-    btn.disabled = true;
-    btn.style.margin = '10px';
-    btn.innerText = 'Calculate factorial';
+    };
     btn.addEventListener('click', btnClickHandler);
-
-    const resultDiv = document.createElement('div');
-    resultDiv.style["whiteSpace"] = 'unset';
-
-    const descriptionSpan = document.createElement('span');
-    const descriptionResultSpan = document.createElement('span');
-    resultDiv.appendChild(descriptionSpan);
-    resultDiv.appendChild(descriptionResultSpan);
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
@@ -62,5 +62,4 @@
     rootDiv.appendChild(btn);
     rootDiv.appendChild(resultDiv);
     rootDiv.appendChild(br);
-
 })();

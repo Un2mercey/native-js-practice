@@ -1,6 +1,6 @@
-'use strict';
-
 (() => {
+    'use strict';
+
     const scripts = [
         'src/sum-of-numbers.js',
         'src/factorial.js',
@@ -30,10 +30,10 @@
 
     const loadScripts = async () => {
         const promises = scripts.map(src => loadScriptPromise(src));
-        document.body.style['fontFamily'] = "'Lato', sans-serif";
-        document.body.style['fontSize'] = '24px';
+        document.body.style.fontFamily = 'Lato, ' + 'sans-serif;';
+        document.body.style.fontSize = '24px';
         try {
-            const loadedScripts = await Promise.all(promises);
+            await Promise.all(promises);
         } catch (error) {
             console.error(error);
         }
