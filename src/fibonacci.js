@@ -12,12 +12,17 @@
 
     const descriptionDiv = document.createElement('div');
     descriptionDiv.style.display = 'flex';
+    descriptionDiv.style.alignItems = 'center';
 
     const fibNInput = document.createElement('input');
-    fibNInput.style.margin = '0 5px';
+    fibNInput.style.margin = '0 10px';
+    fibNInput.style.width = '54px';
+    fibNInput.style.height = '30px';
+    fibNInput.style.fontSize = '22px';
+    fibNInput.style.textAlign = 'center';
 
     const descriptionSpan = document.createElement('span');
-    descriptionSpan.innerText = 'What number in the Fibonacci sequence should be returned ?';
+    descriptionSpan.innerText = 'Index of number in the Fibonacci sequence';
 
     descriptionDiv.appendChild(descriptionSpan);
     descriptionDiv.appendChild(fibNInput);
@@ -34,14 +39,27 @@
         return num - 1 > idx ? fib(num, idx + 1, cur, prev + cur) : cur;
     };
 
+    const getOrdinalString = () => {
+        const ordinalArray = ['th', 'st', 'nd', 'rd'];
+        const remainderValue = fibN % 100;
+        return ordinalArray[(remainderValue - 20) % 10] || ordinalArray[remainderValue] || ordinalArray[0];
+    };
+
+    const getEquation = () => {
+        if (fibN < 3) {
+            return 1;
+        }
+        return `${fib(fibN-2)} + ${fib(fibN-1)} = ${fib(fibN)}`;
+    };
+
     const onClick = () => {
-        resultDiv.innerText = fib(fibN).toString();
+        resultDiv.innerText = `The ${fibN}'${getOrdinalString()} number of the Fibonacci sequence is: ${getEquation()}`;
     };
     fibBtn.addEventListener('click', onClick);
 
     const keyupHandler = (ev) => {
         fibN = parseInt(ev.target.value);
-        fibBtn.disabled = isNaN(fibN);
+        fibBtn.disabled = isNaN(fibN) || !fibN;
         if (ev.code === 'Enter') {
             fibBtn.click();
         }

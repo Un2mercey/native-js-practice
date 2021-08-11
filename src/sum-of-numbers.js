@@ -12,12 +12,18 @@
 
     const conditionContainerDiv = document.createElement('div');
     conditionContainerDiv.style.display = 'flex';
+    conditionContainerDiv.style.alignItems = 'center';
+    conditionContainerDiv.style.margin = '10px 0';
 
     const conditionDescriptionSpan = document.createElement('span');
-    conditionDescriptionSpan.innerText = `n = `;
+    conditionDescriptionSpan.innerText = `When n =`;
 
     const sumInput = document.createElement('input');
-    sumInput.style.margin = '0 5px';
+    sumInput.style.margin = '0 10px';
+    sumInput.style.width = '54px';
+    sumInput.style.height = '30px';
+    sumInput.style.fontSize = '22px';
+    sumInput.style.textAlign = 'center';
 
     conditionContainerDiv.appendChild(conditionDescriptionSpan);
     conditionContainerDiv.appendChild(sumInput);

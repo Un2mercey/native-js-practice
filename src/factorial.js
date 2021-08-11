@@ -6,7 +6,7 @@
     const btn = document.createElement('button');
     btn.disabled = true;
     btn.style.margin = '10px';
-    btn.innerText = 'Calculate factorial';
+    btn.innerText = 'calculate';
 
     const br = document.createElement('div');
     br.style.borderBottom = '1px solid';
@@ -21,15 +21,20 @@
 
     const conditionDiv = document.createElement('div');
     conditionDiv.style.display = 'flex';
-
-    const factNumInput = document.createElement('input');
-    factNumInput.style.margin = '0 5px';
+    conditionDiv.style.alignItems = 'center';
 
     const conditionSpan = document.createElement('span');
-    conditionSpan.innerText = `Calculate factorial `;
+    conditionSpan.innerText = `Calculate factorial of`;
 
-    conditionDiv.appendChild(factNumInput);
+    const factNumInput = document.createElement('input');
+    factNumInput.style.margin = '0 10px';
+    factNumInput.style.width = '54px';
+    factNumInput.style.height = '30px';
+    factNumInput.style.fontSize = '22px';
+    factNumInput.style.textAlign = 'center';
+
     conditionDiv.appendChild(conditionSpan);
+    conditionDiv.appendChild(factNumInput);
 
 
     const calculate = (num, result = 1) => {
