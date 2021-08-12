@@ -86,7 +86,7 @@
         return (...args) => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-                func.apply(this, args);
+                func.apply(null, args);
             }, ms);
         };
     };

@@ -30,6 +30,7 @@
 
     const resultDivX = document.createElement('div');
     const resultDivY = document.createElement('div');
+    const elapsedTimeDiv = document.createElement('div');
 
     const setInputStyle = () => {
         delayInput.style.width = '120px';
@@ -51,13 +52,14 @@
 
     let isThrottled = false;
     let savedArgs;
-    const throttleDecorator = (func, ms) => {
+    const throttleDecorator = (func, timerFunc, ms) => {
         const throttleWrapper = (...args) => {
             if (isThrottled) {
                 savedArgs = args;
                 return;
             }
             func.apply(null, args);
+            timerFunc(ms);
             isThrottled = true;
             setTimeout(() => {
                 isThrottled = false;
@@ -70,19 +72,38 @@
         return throttleWrapper;
     };
 
-    const debounceTestInputHandler = (ev) => {
-        const delay = parseInt(delayInput.value);
-        if (!isNaN(delay)) {
-            throttleDecorator(setResult, delay)(ev.clientX, ev.clientY);
+    const getElapsedTime = (start) => {
+        return new Date().getTime() - start.getTime();
+    };
+
+    let interval;
+    const viewElapsedTime = (ms) => {
+        if (!interval) {
+            const startTime = new Date();
+            interval = setInterval(() => {
+                elapsedTimeDiv.innerText = `elapsed time: ${getElapsedTime(startTime)}`;
+            });
+            setTimeout(() => {
+                clearInterval(interval);
+                interval = null;
+            }, ms);
         }
     };
-    canvas.addEventListener('mousemove', debounceTestInputHandler);
+
+    const canvasMousemoveHandler = (ev) => {
+        const delay = parseInt(delayInput.value);
+        if (!isNaN(delay)) {
+            throttleDecorator(setResult, viewElapsedTime, delay)(ev.clientX, ev.clientY);
+        }
+    };
+    canvas.addEventListener('mousemove', canvasMousemoveHandler);
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
     rootDiv.appendChild(titleA);
     rootDiv.appendChild(container);
     rootDiv.appendChild(canvas);
+    rootDiv.appendChild(elapsedTimeDiv);
     rootDiv.appendChild(resultDivX);
     rootDiv.appendChild(resultDivY);
     rootDiv.appendChild(br);
