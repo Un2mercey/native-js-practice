@@ -7,6 +7,9 @@
         'src/fibonacci.js',
         'src/single-linked-list.js',
         'src/spy-decorator.js',
+        'src/delaying-decorator.js',
+        'src/debounce-decorator.js',
+        'src/throttle-decorator.js'
     ];
 
     const loadScript = (src, callback) => {
@@ -33,6 +36,7 @@
         const promises = scripts.map(src => loadScriptPromise(src));
         document.body.style.fontFamily = `'Lato', san-serif`;
         document.body.style.fontSize = '24px';
+        document.body.style.padding = '25px';
         try {
             await Promise.all(promises);
         } catch (error) {

@@ -45,7 +45,7 @@
     const resultDiv = document.createElement('div');
     resultDiv.style.whiteSpace = 'pre';
     resultDiv.style.fontFamily = `'Roboto Mono', monospace`;
-    resultDiv.style.fontSize = '10px';
+    resultDiv.style.fontSize = '14px';
 
     const showListBtn = document.createElement('button');
     showListBtn.innerText = 'show listing';

@@ -1,29 +1,89 @@
+(() => {
+    'use strict';
 
+    const br = document.createElement('div');
+    br.style.borderBottom = '1px solid';
+    br.style.margin = '10px 0';
 
-// const checkInputThrottle = (func, ms) => {
-//     let isThrottled = false;
-//     let savedCtx;
-//     let savedArguments;
-//
-//     function throttleWrapper() {
-//         if (isThrottled) {
-//             savedCtx = this;
-//             savedArguments = arguments;
-//             return;
-//         }
-//         func.apply(this, arguments);
-//         isThrottled = true;
-//         setTimeout(() => {
-//             isThrottled = false;
-//             if (savedArguments) {
-//                 if (savedArguments[0] !== arguments[0]) {
-//                     throttleWrapper.apply(savedCtx, savedArguments);
-//                 }
-//                 savedCtx = null;
-//                 savedArguments = null;
-//             }
-//         }, ms);
-//     }
-//
-//     return throttleWrapper;
-// };
+    const titleA = document.createElement('a');
+    titleA.href = 'https://javascript.info/task/throttle';
+    titleA.innerText = 'Throttle decorator';
+    titleA.style.margin = '10px 0';
+
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+
+    const conditionSpan = document.createElement('span');
+    conditionSpan.innerText = 'Throttle delay =';
+    conditionSpan.style.marginRight = '15px';
+
+    const delayInput = document.createElement('input');
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 1500;
+    canvas.height = 500;
+    canvas.style.border = '2px solid crimson';
+    canvas.style.margin = '20px';
+
+    container.appendChild(conditionSpan);
+    container.appendChild(delayInput);
+
+    const resultDivX = document.createElement('div');
+    const resultDivY = document.createElement('div');
+
+    const setInputStyle = () => {
+        delayInput.style.width = '120px';
+        delayInput.style.height = '30px';
+        delayInput.style.fontSize = '22px';
+        delayInput.style.textAlign = 'center';
+    };
+    setInputStyle();
+
+    const delayInputHandler = (ev) => {
+        ev.target.value = ev.target.value.replace(/[^\d]/g, '');
+    };
+    delayInput.addEventListener('keyup', delayInputHandler);
+
+    const setResult = (x, y) => {
+        resultDivX.innerText = `Coordinate X: ${x}`;
+        resultDivY.innerText = `Coordinate Y: ${y}`;
+    };
+
+    let isThrottled = false;
+    let savedArgs;
+    const throttleDecorator = (func, ms) => {
+        const throttleWrapper = (...args) => {
+            if (isThrottled) {
+                savedArgs = args;
+                return;
+            }
+            func.apply(null, args);
+            isThrottled = true;
+            setTimeout(() => {
+                isThrottled = false;
+                if (savedArgs) {
+                    throttleWrapper.apply(null, savedArgs);
+                    savedArgs = null;
+                }
+            }, ms);
+        };
+        return throttleWrapper;
+    };
+
+    const debounceTestInputHandler = (ev) => {
+        const delay = parseInt(delayInput.value);
+        if (!isNaN(delay)) {
+            throttleDecorator(setResult, delay)(ev.clientX, ev.clientY);
+        }
+    };
+    canvas.addEventListener('mousemove', debounceTestInputHandler);
+
+    const rootDiv = document.getElementById('root');
+    rootDiv.appendChild(br);
+    rootDiv.appendChild(titleA);
+    rootDiv.appendChild(container);
+    rootDiv.appendChild(canvas);
+    rootDiv.appendChild(resultDivX);
+    rootDiv.appendChild(resultDivY);
+    rootDiv.appendChild(br);
+})();

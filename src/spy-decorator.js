@@ -1,7 +1,8 @@
 (() => {
     'use strict';
 
-    let argumentsArray;
+    let argumentsArray = [];
+    let loggedArguments = [];
     const regexp = new RegExp('^\\d*\\.*\\d+$', 'gm');
 
     const br = document.createElement('div');
@@ -36,6 +37,10 @@
     callBtn.disabled = true;
     callBtn.style.margin = '10px';
 
+    const loggedCallsDiv = document.createElement('div');
+    loggedCallsDiv.style.display = 'flex';
+    loggedCallsDiv.style.flexDirection = 'column';
+
     const setInputStyle = (inputTag) => {
         inputTag.style.width = '365px';
         inputTag.style.height = '30px';
@@ -47,6 +52,18 @@
     const setInputColor = (inputTag, color) => {
         inputTag.style.border = `3px solid ${color}`;
         inputTag.style.backgroundColor = color;
+    };
+
+    const generateCalls = (arr, iter = 0) => {
+        if (!arr[iter]) {
+            return;
+        }
+        setTimeout(() => {
+            const loggedCallDiv = document.createElement('div');
+            loggedCallDiv.innerText = `#${iter + 1}: func called with: ${arr[iter].join(', ')}`;
+            loggedCallsDiv.appendChild(loggedCallDiv);
+            return generateCalls(arr, ++iter);
+        }, 500);
     };
 
     const checkInput = (value, keyCode) => {
@@ -83,15 +100,26 @@
     argumentsInput.addEventListener('keyup', argumentsInputHandler);
 
     const simpleFunc = (args) => {
-        let sum = 0;
-
+        const sum = args.reduce((acc, cur) => acc += cur , 0);
+        resultDiv.innerText = `sum is: ${sum}`;
+        generateCalls(loggedArguments);
     };
 
-    const spyDecorator = () => {
-        console.log(argumentsArray);
-        return simpleFunc(...argumentsArray);
+    const spyDecorator = (func) => {
+        return (...args) => {
+            loggedArguments.push(...args);
+            return func.apply(null, args);
+        };
     };
-    callBtn.addEventListener('click', spyDecorator);
+
+    const spyCall = spyDecorator(simpleFunc);
+
+    const callBtnClickHandler = () => {
+        loggedCallsDiv.innerText = '';
+        spyCall(argumentsArray);
+    };
+
+    callBtn.addEventListener('click', callBtnClickHandler);
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
@@ -100,5 +128,6 @@
     rootDiv.appendChild(conditionContainer);
     rootDiv.appendChild(callBtn);
     rootDiv.appendChild(resultDiv);
+    rootDiv.appendChild(loggedCallsDiv);
     rootDiv.appendChild(br);
 })();
