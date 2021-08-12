@@ -6,6 +6,7 @@
         'src/factorial.js',
         'src/fibonacci.js',
         'src/single-linked-list.js',
+        'src/spy-decorator.js',
     ];
 
     const loadScript = (src, callback) => {

@@ -7,8 +7,14 @@
     br.style.borderBottom = '1px solid';
     br.style.margin = '10px 0';
 
+    const titleA = document.createElement('a');
+    titleA.href = 'https://javascript.info/task/spy-decorator';
+    titleA.innerText = 'Sum all numbers till the given one';
+    titleA.style.margin = '10px 0';
+
     const conditionDiv = document.createElement('div');
     conditionDiv.innerText = `Write a function sumTo(n) that calculates the sum of numbers 1 + 2 + ... + n.`;
+    conditionDiv.style.margin = '10px 0';
 
     const conditionContainerDiv = document.createElement('div');
     conditionContainerDiv.style.display = 'flex';
@@ -20,7 +26,7 @@
 
     const sumInput = document.createElement('input');
     sumInput.style.margin = '0 10px';
-    sumInput.style.width = '54px';
+    sumInput.style.width = '85px';
     sumInput.style.height = '30px';
     sumInput.style.fontSize = '22px';
     sumInput.style.textAlign = 'center';
@@ -89,6 +95,7 @@
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
+    rootDiv.appendChild(titleA);
     rootDiv.appendChild(conditionDiv);
     rootDiv.appendChild(conditionContainerDiv);
     rootDiv.appendChild(calculateByRecursionBtn);

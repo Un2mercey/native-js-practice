@@ -37,8 +37,10 @@
     br.style.borderBottom = '1px solid';
     br.style.margin = '10px 0';
 
-    const titleDiv = document.createElement('div');
-    titleDiv.innerText = 'Output a single-linked list';
+    const titleA = document.createElement('a');
+    titleA.innerText = 'Output a single-linked list';
+    titleA.href = 'https://javascript.info/task/output-single-linked-list';
+    titleA.style.margin = '10px 0';
 
     const resultDiv = document.createElement('div');
     resultDiv.style.whiteSpace = 'pre';
@@ -90,7 +92,7 @@
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
-    rootDiv.appendChild(titleDiv);
+    rootDiv.appendChild(titleA);
     rootDiv.appendChild(showListBtn);
     rootDiv.appendChild(resultDiv);
     rootDiv.appendChild(br);

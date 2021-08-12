@@ -12,6 +12,11 @@
     br.style.borderBottom = '1px solid';
     br.style.margin = '10px 0';
 
+    const titleA = document.createElement('a');
+    titleA.href = 'https://javascript.info/task/factorial';
+    titleA.innerText = 'Calculate factorial';
+    titleA.style.margin = '10px 0';
+
     const resultDiv = document.createElement('div');
     const descriptionSpan = document.createElement('span');
     const descriptionResultSpan = document.createElement('span');
@@ -22,9 +27,10 @@
     const conditionDiv = document.createElement('div');
     conditionDiv.style.display = 'flex';
     conditionDiv.style.alignItems = 'center';
+    conditionDiv.style.margin = '10px 0';
 
     const conditionSpan = document.createElement('span');
-    conditionSpan.innerText = `Calculate factorial of`;
+    conditionSpan.innerText = `of`;
 
     const factNumInput = document.createElement('input');
     factNumInput.style.margin = '0 10px';
@@ -63,6 +69,7 @@
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
+    rootDiv.appendChild(titleA);
     rootDiv.appendChild(conditionDiv);
     rootDiv.appendChild(btn);
     rootDiv.appendChild(resultDiv);

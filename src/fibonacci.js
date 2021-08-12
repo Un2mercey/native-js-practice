@@ -7,8 +7,10 @@
     br.style.borderBottom = '1px solid';
     br.style.margin = '10px 0';
 
-    const titleDiv = document.createElement('div');
-    titleDiv.innerText = 'Fibonacci numbers';
+    const titleA = document.createElement('a');
+    titleA.innerText = 'Fibonacci numbers';
+    titleA.href = 'https://javascript.info/task/fibonacci-numbers';
+    titleA.style.margin = '10px 0';
 
     const descriptionDiv = document.createElement('div');
     descriptionDiv.style.display = 'flex';
@@ -23,6 +25,7 @@
 
     const descriptionSpan = document.createElement('span');
     descriptionSpan.innerText = 'Index of number in the Fibonacci sequence';
+    descriptionSpan.style.margin = '10px 0';
 
     descriptionDiv.appendChild(descriptionSpan);
     descriptionDiv.appendChild(fibNInput);
@@ -68,7 +71,7 @@
 
     const rootDiv = document.getElementById('root');
     rootDiv.appendChild(br);
-    rootDiv.appendChild(titleDiv);
+    rootDiv.appendChild(titleA);
     rootDiv.appendChild(descriptionDiv);
     rootDiv.appendChild(fibBtn);
     rootDiv.appendChild(resultDiv);
