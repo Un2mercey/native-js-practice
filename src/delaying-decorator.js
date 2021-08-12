@@ -25,7 +25,7 @@
     firstRowDiv.style.margin = '10px 0';
 
     const conditionSpan = document.createElement('span');
-    conditionSpan.innerText = 'Simple function to calculate sum of arguments with delay =';
+    conditionSpan.innerText = 'Simple function to calculate sum of arguments with delay (ms) =';
     conditionSpan.style.marginRight = '15px';
 
     const delayInput = document.createElement('input');

@@ -14,7 +14,7 @@
     container.style.display = 'flex';
 
     const conditionSpan = document.createElement('span');
-    conditionSpan.innerText = 'Throttle delay =';
+    conditionSpan.innerText = 'Throttle delay (ms) =';
     conditionSpan.style.marginRight = '15px';
 
     const delayInput = document.createElement('input');

@@ -12,8 +12,10 @@
 
     const container = document.createElement('div');
     container.style.display = 'flex';
+    container.style.alignItems = 'center';
 
     const conditionSpan = document.createElement('span');
+    conditionSpan.innerText = 'Debounce delay (ms) =';
     conditionSpan.style.marginRight = '15px';
 
     const delayInput = document.createElement('input');
