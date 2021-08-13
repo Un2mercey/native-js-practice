@@ -30,6 +30,10 @@
 
     const resultDiv = document.createElement('div');
     const elapsedTimeDiv = document.createElement('div');
+    const clearResultBtn = document.createElement('button');
+    clearResultBtn.innerText = 'clear';
+    clearResultBtn.style.height = '36px';
+    clearResultBtn.style.padding = '0 10px';
 
     const setInputStyle = (inputTag, width) => {
         inputTag.style.width = `${width}px`;
@@ -39,6 +43,12 @@
     };
     setInputStyle(delayInput, 120);
     setInputStyle(debounceTestInput, 400);
+
+    const clearResult = () => {
+        elapsedTimeDiv.innerText = '';
+        resultDiv.innerText = '' ;
+    };
+    clearResultBtn.addEventListener('click', clearResult);
 
     const delayInputHandler = (ev) => {
         ev.target.value = ev.target.value.replace(/[^\d]/g, '');
@@ -73,7 +83,6 @@
     const debounceTestInputHandler = (ev) => {
         const delay = parseInt(delayInput.value);
         if (!isNaN(delay) && !!ev.target.value) {
-            elapsedTimeDiv.innerText = '';
             debounceDecorator(simpleFunc, delay)(ev.target.value);
             viewElapsedTime(delay);
         }
@@ -84,6 +93,7 @@
     rootDiv.appendChild(br);
     rootDiv.appendChild(titleA);
     rootDiv.appendChild(container);
+    rootDiv.appendChild(clearResultBtn);
     rootDiv.appendChild(debounceTestInput);
     rootDiv.appendChild(elapsedTimeDiv);
     rootDiv.appendChild(resultDiv);
