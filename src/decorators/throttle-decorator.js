@@ -1,10 +1,6 @@
 (() => {
     'use strict';
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.href = 'https://javascript.info/task/throttle';
     titleA.innerText = 'Throttle decorator';
@@ -12,6 +8,7 @@
 
     const container = document.createElement('div');
     container.style.display = 'flex';
+    container.style.alignItems = 'center';
 
     const conditionSpan = document.createElement('span');
     conditionSpan.innerText = 'Throttle delay (ms) =';
@@ -20,10 +17,6 @@
     const delayInput = document.createElement('input');
 
     const canvas = document.createElement('canvas');
-    canvas.width = 1500;
-    canvas.height = 500;
-    canvas.style.border = '2px solid crimson';
-    canvas.style.margin = '20px';
 
     container.appendChild(conditionSpan);
     container.appendChild(delayInput);
@@ -99,12 +92,14 @@
     canvas.addEventListener('mousemove', canvasMousemoveHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(container);
-    rootDiv.appendChild(canvas);
-    rootDiv.appendChild(elapsedTimeDiv);
-    rootDiv.appendChild(resultDivX);
-    rootDiv.appendChild(resultDivY);
-    rootDiv.appendChild(br);
+    const throttleDecoratorContainer = document.createElement('div');
+    throttleDecoratorContainer.className = 'throttle-decorator';
+    throttleDecoratorContainer.appendChild(titleA);
+    throttleDecoratorContainer.appendChild(container);
+    throttleDecoratorContainer.appendChild(canvas);
+    throttleDecoratorContainer.appendChild(elapsedTimeDiv);
+    throttleDecoratorContainer.appendChild(resultDivX);
+    throttleDecoratorContainer.appendChild(resultDivY);
+    rootDiv.appendChild(throttleDecoratorContainer);
+
 })();

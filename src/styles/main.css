@@ -1,0 +1,84 @@
+body {
+    font-family: "Lato", san-serif;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+}
+
+body * {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    padding: 24px 40px;
+    position: relative;
+}
+
+.br {
+    border-bottom: 1px solid cornflowerblue;
+    margin: 10px 0;
+}
+
+textarea,
+input {
+    border: 1px solid cornflowerblue;
+    padding: 10px 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+textarea:focus-visible,
+input:focus-visible {
+    outline: none;
+    border-color: darkorange;
+}
+
+button {
+    padding: 10px 15px;
+    background: white;
+    color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+    border-radius: 10px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    transition: all .2s cubic-bezier(.1, .9, .9, .1);
+}
+
+button:hover {
+    color: darkorange;
+    border-color: darkorange;
+    cursor: pointer;
+}
+
+a {
+    color: cornflowerblue;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    text-decoration: none;
+    transition: all .2s cubic-bezier(.1, .9, .9, .1);
+}
+
+a:visited {
+    color: #3960b0;
+}
+
+a:visited:hover,
+a:hover {
+    color: darkorange;
+    cursor: pointer;
+}
+
+canvas {
+    display: flex;
+    border: 1px solid cornflowerblue;
+    width: 100%;
+    margin: 10px 0;
+}
+
+canvas:hover {
+    border-color: darkorange;
+}
+
+h1 {
+    color: darkorange;
+    text-shadow: 0 1px 10px rgba(255, 140, 0, 0.3);
+    cursor: default;
+}

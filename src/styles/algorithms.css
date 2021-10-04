@@ -1,0 +1,77 @@
+.selection-sort div,
+.quick-sort div,
+.bubble-sort div,
+.binary-search div,
+.linear-search div {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.selection-sort div.result,
+.bubble-sort div.result,
+.quick-sort div.result,
+.binary-search div.result,
+.linear-search div.result {
+    flex-direction: column;
+    align-items: start;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+}
+
+.selection-sort div.result .br,
+.bubble-sort div.result .br,
+.quick-sort div.result .br,
+.binary-search div.result .br,
+.linear-search div.result .br {
+    width: 100%;
+}
+
+.selection-sort div label,
+.bubble-sort div label,
+.quick-sort div label,
+.binary-search div label,
+.linear-search div label {
+    min-width: 400px;
+}
+.selection-sort div textarea,
+.bubble-sort div textarea,
+.quick-sort div textarea,
+.binary-search div textarea,
+.binary-search div input,
+.linear-search div textarea,
+.linear-search div input {
+    flex: 1;
+}
+
+.selection-sort button,
+.quick-sort button,
+.bubble-sort button,
+.binary-search button,
+.linear-search button {
+    display: flex;
+}
+
+
+.quick-sort div.result div.listing,
+.bubble-sort div.result div.listing,
+.selection-sort div.result div.listing {
+    margin: 20px 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+}
+
+.gen-buttons button {
+    margin-right: 10px;
+}
+
+.error {
+    background: rgba(220, 20, 60, 0.5);
+    color: #f1f1f1;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+    padding: 0 24px;
+    line-height: 48px;
+    font-size: 24px;
+    font-family: 'Roboto Mono', monospace;
+}

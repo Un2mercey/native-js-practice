@@ -3,12 +3,8 @@
 
     let n;
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
-    titleA.href = 'https://javascript.info/task/spy-decorator';
+    titleA.href = 'https://javascript.info/task/sum-to';
     titleA.innerText = 'Sum all numbers till the given one';
     titleA.style.margin = '10px 0';
 
@@ -37,12 +33,10 @@
     const calculateByRecursionBtn = document.createElement('button');
     calculateByRecursionBtn.disabled = true;
     calculateByRecursionBtn.innerText = 'calculate by recursion';
-    calculateByRecursionBtn.style.margin = '10px';
 
     const calculateByFormulaBtn = document.createElement('button');
     calculateByFormulaBtn.disabled = true;
     calculateByFormulaBtn.innerText = 'calculate by formula';
-    calculateByFormulaBtn.style.margin = '10px';
 
     const resultDiv = document.createElement('div');
     const resultDescriptionSpan = document.createElement('span');
@@ -61,10 +55,12 @@
                 const res = cur + iterNum;
                 resultDescriptionSpan.innerText = `${cur} + ${iterNum} = `;
                 resultValueSpan.innerText = res;
+                resultDiv.className = 'is-active';
                 return recursion(res, ++iterNum);
             }, 100);
         } else {
             calculateByRecursionBtn.disabled = false;
+            resultDiv.className = '';
             resultDescriptionSpan.innerText = `result by recursion: `;
             resultValueSpan.innerText = cur.toString();
         }
@@ -94,13 +90,15 @@
     setFormulaResult(0);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(conditionDiv);
-    rootDiv.appendChild(conditionContainerDiv);
-    rootDiv.appendChild(calculateByRecursionBtn);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(calculateByFormulaBtn);
-    rootDiv.appendChild(formulaResultDiv);
-    rootDiv.appendChild(br);
+    const sumOfNumbersContainer = document.createElement('div');
+    sumOfNumbersContainer.className = 'sum-of-numbers';
+    sumOfNumbersContainer.appendChild(titleA);
+    sumOfNumbersContainer.appendChild(conditionDiv);
+    sumOfNumbersContainer.appendChild(conditionContainerDiv);
+    sumOfNumbersContainer.appendChild(calculateByRecursionBtn);
+    sumOfNumbersContainer.appendChild(resultDiv);
+    sumOfNumbersContainer.appendChild(calculateByFormulaBtn);
+    sumOfNumbersContainer.appendChild(formulaResultDiv);
+    rootDiv.appendChild(sumOfNumbersContainer);
+
 })();

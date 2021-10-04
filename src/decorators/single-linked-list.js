@@ -33,10 +33,6 @@
         }
     };
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.innerText = 'Output a single-linked list';
     titleA.href = 'https://javascript.info/task/output-single-linked-list';
@@ -49,7 +45,6 @@
 
     const showListBtn = document.createElement('button');
     showListBtn.innerText = 'show listing';
-    showListBtn.style.margin = '10px';
     showListBtn.disabled = false;
 
     const reverse = (iter) => {
@@ -91,9 +86,11 @@
     showListBtn.addEventListener('click', btnClickHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(showListBtn);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(br);
+    const singleLinkedListContainer = document.createElement('div');
+    singleLinkedListContainer.className = 'single-linked-list';
+    singleLinkedListContainer.appendChild(titleA);
+    singleLinkedListContainer.appendChild(showListBtn);
+    singleLinkedListContainer.appendChild(resultDiv);
+    rootDiv.appendChild(singleLinkedListContainer);
+
 })();
