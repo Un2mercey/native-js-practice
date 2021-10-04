@@ -3,10 +3,6 @@
 
     let timeout;
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.href = 'https://javascript.info/task/delay';
     titleA.innerText = 'Delaying decorator';
@@ -22,6 +18,7 @@
 
     const firstRowDiv = document.createElement('div');
     firstRowDiv.style.display = 'flex';
+    firstRowDiv.style.alignItems = 'center';
     firstRowDiv.style.margin = '10px 0';
 
     const conditionSpan = document.createElement('span');
@@ -33,6 +30,7 @@
 
     const secondRow = document.createElement('div');
     secondRow.style.display = 'flex';
+    secondRow.style.alignItems = 'center';
     secondRow.style.margin = '10px 0';
 
     const argumentAInput = document.createElement('input');
@@ -65,7 +63,6 @@
     const callBtn = document.createElement('button');
     callBtn.innerText = 'call fn';
     callBtn.disabled = true;
-    callBtn.style.margin = '10px';
 
     const setInputStyle = (inputTag) => {
         inputTag.style.width = '80px';
@@ -159,11 +156,13 @@
     callBtn.addEventListener('click', callBtnClickHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(descriptionDiv);
-    rootDiv.appendChild(conditionContainer);
-    rootDiv.appendChild(callBtn);
-    rootDiv.appendChild(elapsedTimeDiv);
-    rootDiv.appendChild(br);
+    const delayingDecoratorContainer = document.createElement('div');
+    delayingDecoratorContainer.className = 'delaying-decorator';
+    delayingDecoratorContainer.appendChild(titleA);
+    delayingDecoratorContainer.appendChild(descriptionDiv);
+    delayingDecoratorContainer.appendChild(conditionContainer);
+    delayingDecoratorContainer.appendChild(callBtn);
+    delayingDecoratorContainer.appendChild(elapsedTimeDiv);
+    rootDiv.appendChild(delayingDecoratorContainer);
+
 })();

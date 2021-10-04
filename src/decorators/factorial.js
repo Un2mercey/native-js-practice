@@ -5,12 +5,7 @@
 
     const btn = document.createElement('button');
     btn.disabled = true;
-    btn.style.margin = '10px';
     btn.innerText = 'calculate';
-
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
 
     const titleA = document.createElement('a');
     titleA.href = 'https://javascript.info/task/factorial';
@@ -68,10 +63,12 @@
     btn.addEventListener('click', btnClickHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(conditionDiv);
-    rootDiv.appendChild(btn);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(br);
+    const factorialContainer = document.createElement('div');
+    factorialContainer.className = 'factorial';
+    factorialContainer.appendChild(titleA);
+    factorialContainer.appendChild(conditionDiv);
+    factorialContainer.appendChild(btn);
+    factorialContainer.appendChild(resultDiv);
+    rootDiv.appendChild(factorialContainer);
+
 })();

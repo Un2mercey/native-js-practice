@@ -1,0 +1,115 @@
+#nav {
+    height: 50px;
+    background-color: rgba(100, 149, 237, 0.6);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#nav div.dropdown {
+    position: relative;
+    display: flex;
+    height: 100%;
+    padding: 0 0 0 24px;
+}
+
+#nav div.dropdown button.dropbtn {
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+#nav div.dropdown button.dropbtn:hover {
+    border-bottom: unset;
+}
+
+#nav div.dropdown div.dropdown-content {
+    display: none;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    position: absolute;
+    background: whitesmoke;
+    border: 1px solid darkorange;
+    box-shadow: 0 1px 10px rgba(255, 140, 0, .3);
+    z-index: 1;
+    border-radius: 0;
+    top: 50px;
+    left: 24px;
+    width: max-content;
+    width: -moz-max-content;
+}
+
+#nav div.dropdown div.dropdown-content a {
+    flex: 1;
+    padding: 12px;
+    font-size: 20px;
+}
+
+#nav div.dropdown div.dropdown-content a:hover:after {
+    animation: anim 3.6s linear infinite;
+    -webkit-animation: anim 3.6s linear infinite;
+    content: " <";
+    position: absolute;
+    right: -36px;
+    z-index: 1;
+    color: darkorange;
+    text-shadow: 0 1px 20px crimson;
+}
+
+#nav div.dropdown:hover div.dropdown-content {
+    display: flex;
+}
+
+@keyframes anim {
+    0%   { content: "<"  ; }
+    5%   { content: "<<" ; }
+    10%  { content: "<<<"; }
+    15%  { content: "<<" ; }
+    20%  { content: "<"  ; }
+    25%  { content: "<<" ; }
+    30%  { content: "<<<"; }
+    35%  { content: "<<" ; }
+    40%  { content: "<"  ; }
+    45%  { content: "<<" ; }
+    50%  { content: "<<<"; }
+    55%  { content: "<<" ; }
+    60%  { content: "<"  ; }
+    65%  { content: "<<" ; }
+    70%  { content: "<<<"; }
+    75%  { content: "<<" ; }
+    80%  { content: "<"  ; }
+    85%  { content: "<<" ; }
+    90%  { content: "<<<"; }
+    95%  { content: "<<" ; }
+    100% { content: "<"  ; }
+}
+
+@-webkit-keyframes anim {
+    0%   { content: "<"  ; }
+    5%   { content: "<<" ; }
+    10%  { content: "<<<"; }
+    15%  { content: "<<" ; }
+    20%  { content: "<"  ; }
+    25%  { content: "<<" ; }
+    30%  { content: "<<<"; }
+    35%  { content: "<<" ; }
+    40%  { content: "<"  ; }
+    45%  { content: "<<" ; }
+    50%  { content: "<<<"; }
+    55%  { content: "<<" ; }
+    60%  { content: "<"  ; }
+    65%  { content: "<<" ; }
+    70%  { content: "<<<"; }
+    75%  { content: "<<" ; }
+    80%  { content: "<"  ; }
+    85%  { content: "<<" ; }
+    90%  { content: "<<<"; }
+    95%  { content: "<<" ; }
+    100% { content: "<"  ; }
+}

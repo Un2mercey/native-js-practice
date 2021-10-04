@@ -5,10 +5,6 @@
     let loggedArguments = [];
     const regexp = new RegExp('^\\d*\\.*\\d+$', 'gm');
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.href = 'https://javascript.info/task/spy-decorator';
     titleA.innerText = 'Spy decorator';
@@ -35,7 +31,6 @@
     const callBtn = document.createElement('button');
     callBtn.innerText = 'call fn';
     callBtn.disabled = true;
-    callBtn.style.margin = '10px';
 
     const loggedCallsDiv = document.createElement('div');
     loggedCallsDiv.style.display = 'flex';
@@ -122,12 +117,14 @@
     callBtn.addEventListener('click', callBtnClickHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(descriptionDiv);
-    rootDiv.appendChild(conditionContainer);
-    rootDiv.appendChild(callBtn);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(loggedCallsDiv);
-    rootDiv.appendChild(br);
+    const spyDecoratorContainer = document.createElement('div');
+    spyDecoratorContainer.className = 'spy-decorator';
+    spyDecoratorContainer.appendChild(titleA);
+    spyDecoratorContainer.appendChild(descriptionDiv);
+    spyDecoratorContainer.appendChild(conditionContainer);
+    spyDecoratorContainer.appendChild(callBtn);
+    spyDecoratorContainer.appendChild(resultDiv);
+    spyDecoratorContainer.appendChild(loggedCallsDiv);
+    rootDiv.appendChild(spyDecoratorContainer);
+
 })();

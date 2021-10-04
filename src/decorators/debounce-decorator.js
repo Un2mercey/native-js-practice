@@ -1,10 +1,6 @@
 (() => {
     'use strict';
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.href = 'https://javascript.info/task/debounce';
     titleA.innerText = 'Debounce decorator';
@@ -23,7 +19,7 @@
 
     const debounceTestInput = document.createElement('input');
     debounceTestInput.placeholder = 'Test debounce fn';
-    debounceTestInput.style.margin = '20px';
+    debounceTestInput.style.margin = '10px 0';
 
     container.appendChild(conditionSpan);
     container.appendChild(delayInput);
@@ -32,8 +28,6 @@
     const elapsedTimeDiv = document.createElement('div');
     const clearResultBtn = document.createElement('button');
     clearResultBtn.innerText = 'clear';
-    clearResultBtn.style.height = '36px';
-    clearResultBtn.style.padding = '0 10px';
 
     const setInputStyle = (inputTag, width) => {
         inputTag.style.width = `${width}px`;
@@ -90,12 +84,14 @@
     debounceTestInput.addEventListener('keyup', debounceTestInputHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(container);
-    rootDiv.appendChild(clearResultBtn);
-    rootDiv.appendChild(debounceTestInput);
-    rootDiv.appendChild(elapsedTimeDiv);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(br);
+    const debounceDecoratorContainer = document.createElement('div');
+    debounceDecoratorContainer.className = 'debounce-decorator';
+    debounceDecoratorContainer.appendChild(titleA);
+    debounceDecoratorContainer.appendChild(container);
+    debounceDecoratorContainer.appendChild(clearResultBtn);
+    debounceDecoratorContainer.appendChild(debounceTestInput);
+    debounceDecoratorContainer.appendChild(elapsedTimeDiv);
+    debounceDecoratorContainer.appendChild(resultDiv);
+    rootDiv.appendChild(debounceDecoratorContainer);
+
 })();

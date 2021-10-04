@@ -3,10 +3,6 @@
 
     let fibN;
 
-    const br = document.createElement('div');
-    br.style.borderBottom = '1px solid';
-    br.style.margin = '10px 0';
-
     const titleA = document.createElement('a');
     titleA.innerText = 'Fibonacci numbers';
     titleA.href = 'https://javascript.info/task/fibonacci-numbers';
@@ -34,7 +30,6 @@
 
     const fibBtn = document.createElement('button');
     fibBtn.innerText = 'get number';
-    fibBtn.style.margin = '10px';
     fibBtn.disabled = true;
 
     // 1 1 2 3 5 8 13
@@ -70,10 +65,12 @@
     fibNInput.addEventListener('keyup', keyupHandler);
 
     const rootDiv = document.getElementById('root');
-    rootDiv.appendChild(br);
-    rootDiv.appendChild(titleA);
-    rootDiv.appendChild(descriptionDiv);
-    rootDiv.appendChild(fibBtn);
-    rootDiv.appendChild(resultDiv);
-    rootDiv.appendChild(br);
+    const fibonacciContainer = document.createElement('div');
+    fibonacciContainer.className = 'fibonacci';
+    fibonacciContainer.appendChild(titleA);
+    fibonacciContainer.appendChild(descriptionDiv);
+    fibonacciContainer.appendChild(fibBtn);
+    fibonacciContainer.appendChild(resultDiv);
+    rootDiv.appendChild(fibonacciContainer);
+
 })();

@@ -1,15 +1,65 @@
 (() => {
     'use strict';
 
-    const scripts = [
-        'src/sum-of-numbers.js',
-        'src/factorial.js',
-        'src/fibonacci.js',
-        'src/single-linked-list.js',
-        'src/spy-decorator.js',
-        'src/delaying-decorator.js',
-        'src/debounce-decorator.js',
-        'src/throttle-decorator.js'
+    const rootDiv = document.getElementById('root');
+    const navDiv = document.getElementById('nav');
+
+    const decoratorsScripts = [
+        {
+            name: 'Sum of numbers',
+            value: 'src/decorators/sum-of-numbers.js',
+        },
+        {
+            name: 'Factorial',
+            value: 'src/decorators/factorial.js',
+        },
+        {
+            name: 'Fibonacci',
+            value: 'src/decorators/fibonacci.js',
+        },
+        {
+            name: 'Object listing',
+            value: 'src/decorators/single-linked-list.js',
+        },
+        {
+            name: 'Spy decorator',
+            value: 'src/decorators/spy-decorator.js',
+        },
+        {
+            name: 'Delaying decorator',
+            value: 'src/decorators/delaying-decorator.js',
+        },
+        {
+            name: 'Debounce decorator',
+            value: 'src/decorators/debounce-decorator.js',
+        },
+        {
+            name: 'Throttle decorator',
+            value: 'src/decorators/throttle-decorator.js',
+        },
+    ];
+
+    const algorithmsScripts = [
+        {
+            name: 'Linear search',
+            value: 'src/algorithms/linear-search.js',
+        },
+        {
+            name: 'Binary search',
+            value: 'src/algorithms/binary-search.js',
+        },
+        {
+            name: 'Selection sort',
+            value: 'src/algorithms/selection-sort.js',
+        },
+        {
+            name: 'Bubble sort',
+            value: 'src/algorithms/bubble-sort.js',
+        },
+        {
+            name: 'Quick sort',
+            value: 'src/algorithms/quick-sort.js',
+        },
     ];
 
     const loadScript = (src, callback) => {
@@ -32,11 +82,17 @@
         }));
     };
 
-    const loadScripts = async () => {
-        const promises = scripts.map(src => loadScriptPromise(src));
-        document.body.style.fontFamily = `'Lato', san-serif`;
-        document.body.style.fontSize = '24px';
-        document.body.style.padding = '25px';
+    const removeScripts = () => {
+        const scripts = [...document.getElementsByTagName('script')].slice(1);
+        if (scripts.length) {
+            scripts.forEach(s => document.body.removeChild(s));
+            rootDiv.innerText = '';
+        }
+    };
+
+    const loadScripts = async (scriptsArr) => {
+        removeScripts();
+        const promises = scriptsArr.map(src => loadScriptPromise(src));
         try {
             await Promise.all(promises);
         } catch (error) {
@@ -44,7 +100,54 @@
         }
     };
 
-    return loadScripts();
+    const createMenuItems = (pages) => {
+        const pagesDiv = document.createElement('div');
+        pagesDiv.className = 'dropdown-content';
+        pages.forEach(p => {
+            const pageA = document.createElement('a');
+            pageA.innerText = p.name;
+            pageA.addEventListener('click', async () => {
+                removeScripts();
+                await loadScriptPromise(p.value);
+                localStorage.setItem('prev', p.value);
+            });
+            pagesDiv.append(pageA);
+        });
+        return pagesDiv;
+    };
+
+    const createNav = () => {
+        const decoratorsDiv = document.createElement('div');
+        decoratorsDiv.className = 'dropdown';
+        const decoratorsMenuItems = createMenuItems(decoratorsScripts);
+        const decoratorsBtn = document.createElement('button');
+        decoratorsBtn.className = 'dropbtn';
+        decoratorsBtn.innerText = 'Decorators';
+        decoratorsDiv.appendChild(decoratorsBtn);
+        decoratorsDiv.appendChild(decoratorsMenuItems);
+
+        const algorithmsDiv= document.createElement('div');
+        algorithmsDiv.className = 'dropdown';
+        const algorithmsMenuItems = createMenuItems(algorithmsScripts);
+        const algorithmBtn = document.createElement('button');
+        algorithmBtn.className = 'dropbtn';
+        algorithmBtn.innerText = 'Algorithms';
+        algorithmsDiv.appendChild(algorithmBtn);
+        algorithmsDiv.appendChild(algorithmsMenuItems);
+
+        navDiv.appendChild(decoratorsDiv);
+        navDiv.appendChild(algorithmsDiv);
+    };
+
+    const createBodyLayout = async () => {
+        createNav();
+        if (localStorage.getItem('prev')) {
+            await loadScriptPromise(localStorage.getItem('prev'));
+        }
+    };
+
+    return createBodyLayout();
+
 })();
 
 
