@@ -62,6 +62,45 @@
         },
     ];
 
+    const styles = [
+        'src/styles/main.css',
+        'src/styles/nav.css',
+        'src/styles/decorators.css',
+        'src/styles/algorithms.css',
+    ];
+
+    const loadStyle = (href, callback) => {
+        const head  = document.getElementsByTagName('head')[0];
+        const link  = document.createElement('link');
+        link.rel  = 'stylesheet';
+        link.type = 'text/css';
+        link.href = href;
+        link.onload = () => callback(null, link);
+        link.onerror = () => callback(new Error(`Style load error ${href}`));
+        head.appendChild(link);
+    };
+
+    const loadStylePromise = (href) => {
+        return new Promise(((resolve, reject) => {
+            loadStyle(href, (err, link) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(link);
+                }
+            });
+        }));
+    };
+
+    const loadStyles = async (stylesArr) => {
+        const promises = stylesArr.map(href => loadStylePromise(href));
+        try {
+            await Promise.all(promises);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const loadScript = (src, callback) => {
         const script = document.createElement('script');
         script.src = src;
@@ -139,14 +178,16 @@
         navDiv.appendChild(algorithmsDiv);
     };
 
-    const createBodyLayout = async () => {
+    window.onload = async () => {
+        document.body.style.display = 'none';
+        await loadStyles(styles);
         createNav();
         if (localStorage.getItem('prev')) {
             await loadScriptPromise(localStorage.getItem('prev'));
         }
-    };
+        document.body.style.display = '';
 
-    return createBodyLayout();
+    };
 
 })();
 
